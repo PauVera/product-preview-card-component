@@ -1,0 +1,302 @@
+@layer reset, tokens, base, components, utilities, exceptions;
+
+@layer reset {
+  *,
+  *::before,
+  *::after {
+    box-sizing: border-box;
+  }
+
+  *:not(dialog) {
+    margin: 0;
+  }
+
+  ul[class],
+  ol[class] {
+    padding: 0;
+    margin: 0;
+    list-style: none;
+  }
+
+  img {
+    display: block;
+    max-width: 100%;
+    block-size: auto;
+  }
+
+  input,
+  button,
+  textarea,
+  select {
+    font: inherit;
+    background-color: transparent;
+  }
+}
+
+@layer tokens {
+  :root {
+    /* Primitives */
+        /* colors*/
+        --primary-500: hsl(158, 36%, 37%);
+        --primary-700: hsl(158, 42%, 18%);
+        --neutral-900: hsl(212, 21%, 14%);
+        --neutral-600: hsl(228, 12%, 48%);
+        --neutral-300: hsl(30, 38%, 92%);   
+        --neutral-50:  hsl(0, 0%, 100%);
+
+        /* font family */
+        --ff-sans: "Montserrat", sans-serif;
+        --ff-serif: "Fraunces", serif;
+
+        /*font sizes*/
+        --fs--1: clamp(0.75rem, 0.706rem + 0.1878vw, 0.875rem);     /* 12px - 14px */
+        --fs-0: clamp(0.875rem, 0.831rem + 0.1878vw, 1rem);         /* 14px - 16px */
+        --fs-1: clamp(1.05rem, 0.9796rem + 0.3005vw, 1.25rem);      /* ~17px - 20px */
+        --fs-2: clamp(1.26rem, 1.1535rem + 0.4545vw, 1.5625rem);    /* ~20px - 25px */
+        --fs-3: clamp(1.512rem, 1.3567rem + 0.6627vw, 1.9531rem);   /* ~24px - ~31px */
+        --fs-4: clamp(2rem, 1.7359rem + 1.1268vw, 2.75rem);         /* 32px - 44px */
+        --fs-5: clamp(2.1773rem, 1.8694rem + 1.3138vw, 3.0518rem);  /* ~35px - ~49px */
+
+        /* font weights */
+        --fw-500: 500;
+        --fw-700: 700;
+
+        /* line-height*/
+        --lh-500: 1;
+        --lh-700: 1.5;
+        --lh-900: 1.8;
+
+        /* spacing */        
+        --sp-0: 0.25rem;    /* 4px */
+        --sp-1: 0.5rem;     /* 8px */
+        --sp-2: 0.75rem;     /* 12px */
+        --sp-3: 1rem;       /* 16px */
+        --sp-4: clamp(1.5rem, 1.2359rem + 1.1268vw, 2.25rem);   /* 24px → 36px */
+        --sp-5: clamp(2rem, 1.6479rem + 1.5023vw, 3rem);        /* 32px → 48px */
+        --sp-6: clamp(3rem, 2.6479rem + 1.5023vw, 4rem);        /* 48px → 64px */
+        --sp-7: 4.75rem;
+
+        /*border radius*/
+        --br-500: 0.5rem;
+
+    /*Semantics*/
+        /* screen sizes */
+        --viewport-min: 375px;
+        --viewport-max: 1440px;
+
+        /*font family*/
+        --font-base: var(--ff-sans);
+        --font-heading: var(--ff-serif);
+
+        /* font sizes */
+        --text-size-base: var(--fs-0);
+        --text-size-heading: var(--fs-4);
+        --text-size-subheading: var(--fs--1);
+        --text-size-price: var(--fs-4);
+        --text-size-old-price: var(--fs--1);
+        --text-size-btn: 13px;
+
+        /* line height */
+        --line-height-base: var(--lh-700);
+        --line-height-heading: var(--lh-500);
+
+        /* letter-spacing*/
+        --tracking-subheading: 6px;
+
+        /*colors*/
+        --text-color-base: var(--neutral-600);
+        --text-color-heading: var(--neutral-900);
+        --text-color-price: var(--primary-500);
+        --text-color-old-price: var(--neutral-600);
+        --text-color-btn: var(--neutral-50);
+
+        --background-color-base: var(--neutral-300);
+        --background-color-surface: var(--neutral-50);
+        --background-color-btn: var(--primary-500);
+        --background-color-btn-hover: var(--primary-700);
+        --background-color-btn-focus: var(--primary-700);
+        --background-color-btn-active: var(--primary-700);
+
+        /* border radius */
+        --border-radius-card: var(--br-500);
+  }
+}
+
+@layer base {
+  body {
+    font-family: var(--font-base);
+    font-size: var(--text-size-base);
+    font-weight: var(--fw-500);
+    color: var(--text-color-base);
+    line-height: var(--line-height-base);
+  }
+
+  p,
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    overflow-wrap: break-word;
+  }
+}
+
+@layer components {
+    .main {
+        background-color: var(--background-color-base);
+        block-size: 100%;
+        min-block-size: 100svh;
+        padding-block: var(--sp-7);
+        display: grid;
+        place-items: center;
+    }
+
+    .card {
+        background-color: var(--background-color-surface);
+        max-inline-size: 21.875rem; /*tokenizar?*/
+        border-radius: var(--border-radius-card); 
+        
+        @media (min-width: 50rem) {
+            display: grid;
+            max-inline-size: min(50rem, 75%);
+            grid-template-columns: 1fr 1fr;
+        }
+    }
+
+    .card__image {
+        border-radius: var(--border-radius-card) var(--border-radius-card) 0 0;
+
+        @media (min-width: 50rem) {
+            block-size: 100%;
+            object-fit: cover;
+
+            border-radius: var(--border-radius-card) 0 0 var(--border-radius-card);
+        }
+    }
+
+    .card__content {
+        padding-block: var(--sp-4) var(--sp-5);
+        padding-inline: var(--sp-5);
+
+        @media (min-width: 50rem) {
+            display: flex;
+            flex-direction: column;
+        }
+    }
+
+    .card__subtitle {
+        font-size: var(--text-size-subheading);
+        text-transform: uppercase;
+        letter-spacing: var(--tracking-subheading);
+        padding-block-end: var(--sp-4);
+    }
+
+    .card__title {
+        padding-block-end: var(--sp-4);
+        font-family: var(--font-heading);
+        font-weight: var(--fw-700);
+        font-size: var(--text-size-heading);
+        color: var(--text-color-heading);
+        line-height: var(--line-height-heading);
+    }
+
+    .card__description {
+        padding-block-end: var(--sp-3);
+    }
+    
+    .card__price {
+        display: flex;
+        align-items: center;
+        gap: var(--sp-3);
+        padding-block-end: var(--sp-2);
+
+        font-family: var(--font-heading);
+        font-size: var(--text-size-price);
+        font-weight: var(--fw-700);
+        color: var(--text-color-price);
+
+        & .card__old-price {
+            font-family: var(--font-base);
+            font-size: var(--text-size-old-price);
+            font-weight: var(--fw-500);
+            color: var(--text-color-old-price);
+        }
+    }
+
+    .button {
+        position: relative;
+        display: flex;
+        gap: var(--sp-1);
+        justify-content: center;
+        align-items: center;
+        inline-size: 100%;
+        padding-block: var(--sp-2);
+        margin-block-start: auto;
+        background-color: var(--background-color-btn);
+        border-radius: var(--border-radius-card);
+        border: 1px solid transparent;
+        color: var(--text-color-btn);
+        font-weight: var(--fw-700);
+        font-size: var(--text-size-btn);
+        cursor: pointer;
+
+        &:hover,
+        &:focus-visible {
+            background-color: var(--background-color-btn-hover);
+        }
+
+        &:focus-visible {
+            outline: 2px solid var(--primary-700);
+            outline-offset: 2px;
+        }
+    }
+
+    .plus-one-effect {
+        position: absolute;
+        pointer-events: none;
+        top: 0;
+        right: 0;
+        font-size: var(--fs-2);
+        color: var(--primary-500);
+        opacity: 0;
+        transform: 
+            translate(calc(-50% + var(--_random-x, 0px)), -50%)
+            rotate(var(--_random-rotate, 0deg));
+
+        animation: float-up 2s ease-out forwards;
+        will-change: transform, opacity;
+    }
+    
+    @keyframes float-up {
+        0% {
+            opacity: 0;
+            transform: 
+                translate(calc(-50% + var(--_random-x, 0px)), -50%)
+                rotate(var(--_random-rotate, 0deg));
+        }
+        25% {
+            opacity: 1;            
+        }
+        100% {
+            opacity: 0;
+            transform: 
+                translate(calc(-50% + var(--_random-x, 0px)), -6rem)
+                rotate(0deg);
+        }
+    }
+} 
+
+@layer utilities {
+  .sr-only{
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+    white-space: nowrap;
+    border: 0;
+  }
+}
