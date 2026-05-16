@@ -267,6 +267,12 @@
         animation: float-up 2s ease-out forwards;
         will-change: transform, opacity;
     }
+
+    @media (prefers-reduced-motion: reduce) {
+        .plus-one-effect {
+            animation: none;
+        }
+    }
     
     @keyframes float-up {
         0% {
