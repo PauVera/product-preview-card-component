@@ -39,7 +39,6 @@ Users should be able to:
 
 ### Built with
 
-- Built with
 - Semantic HTML5 markup
 - CSS custom properties
 - CSS cascade layers
