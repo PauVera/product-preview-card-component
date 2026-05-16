@@ -15,7 +15,6 @@ This is my solution to the [Product preview card component challenge on Frontend
   - [Useful resources](#useful-resources)
   - [AI Collaboration](#ai-collaboration)
 - [Author](#author)
-- [Acknowledgments](#acknowledgments)
 
 ## Overview
 
