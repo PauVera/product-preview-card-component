@@ -32,7 +32,7 @@ Users should be able to:
 
 ### Links
 
-- Solution URL: [Solution in Frontend Mentor]()
+- Solution URL: [Solution in Frontend Mentor](https://www.frontendmentor.io/solutions/fluid-product-card-with-design-tokens-and-microinteractions-yk8RrUFqHO)
 - Live Site URL: [Live site in Github pages](https://pauvera.github.io/product-preview-card-component/)
 
 ## My process
